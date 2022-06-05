@@ -25,9 +25,9 @@ This action, wouldn't exist without the excellent work made by the community in 
 | `cache_from` | `string` | `""` | Images to use as cache for the docker build (see `--cache-from` argument docs.docker.com/engine/reference/commandline/build) |
 | `path` | `string` | `.` | Path to Dockerfile, defaults to the working directory |
 | `prebuild_script` | `string` | | Relative path from top-level to script to run before Docker build |
-| `registry_ids` | `string` | | : A comma-delimited list of AWS account IDs that are associated with the ECR registries. If you do not specify a registry, the default ECR registry is assumed |
-| `cluster_name` | `string` | | : The name of the cluster (For now, it must reside on the same account as the ECR) |
-| `kubectl_command` | `string` | | : The command to be executed against the specified cluster, example: `deploy -f my_app.yaml` |
+| `registry_ids` | `string` | | A comma-delimited list of AWS account IDs that are associated with the ECR registries. If you do not specify a registry, the default ECR registry is assumed |
+| `cluster_name` | `string` | | The name of the cluster (For now, it must reside on the same account as the ECR) |
+| `kubectl_command` | `string` | | The command to be executed against the specified cluster, example: `deploy -f my_app.yaml` |
 
 
 ## Usage
