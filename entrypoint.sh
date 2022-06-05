@@ -167,7 +167,7 @@ function execute_kubectl_command() {
   echo $INPUT_KUBECTL_COMMAND
   if [ "$INPUT_CLUSTER_NAME" != "" ]; then
     echo "=== CONFIG KUBE TO CLUSTER"
-    aws eks update-kubeconfig --name $INPUT_CLUSTER_NAME -- region $AWS_DEFAULT_REGION
+    aws eks update-kubeconfig --name $INPUT_CLUSTER_NAME --region $AWS_DEFAULT_REGION
     if [ "$INPUT_KUBECTL_COMMAND" != "" ]; then
       echo "==== EXECUTE COMMAND"
       kubectl $INPUT_KUBECTL_COMMAND
