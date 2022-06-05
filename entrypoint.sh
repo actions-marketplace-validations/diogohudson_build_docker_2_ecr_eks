@@ -8,13 +8,18 @@ INPUT_CREATE_REPO="${INPUT_CREATE_REPO:-false}"
 INPUT_SET_REPO_POLICY="${INPUT_SET_REPO_POLICY:-false}"
 INPUT_REPO_POLICY_FILE="${INPUT_REPO_POLICY_FILE:-repo-policy.json}"
 INPUT_IMAGE_SCANNING_CONFIGURATION="${INPUT_IMAGE_SCANNING_CONFIGURATION:-false}"
+INPUT_CLUSTER_NAME="${INPUT_CLUSTER_NAME:-false}"
+INPUT_KUBECTL_COMMAND="${INPUT_KUBECTL_COMMAND:-false}"
 
 function main() {
+  env
   sanitize "${INPUT_ACCESS_KEY_ID}" "access_key_id"
   sanitize "${INPUT_SECRET_ACCESS_KEY}" "secret_access_key"
   sanitize "${INPUT_REGION}" "region"
   sanitize "${INPUT_ACCOUNT_ID}" "account_id"
   sanitize "${INPUT_REPO}" "repo"
+  sanitize "${INPUT_CLUSTER_NAME}"
+  sanitize "${INPUT_KUBECTL_COMMAND}"
 
   ACCOUNT_URL="$INPUT_ACCOUNT_ID.dkr.ecr.$INPUT_REGION.amazonaws.com"
 
@@ -27,6 +32,7 @@ function main() {
   set_ecr_repo_policy $INPUT_SET_REPO_POLICY
   put_image_scanning_configuration $INPUT_IMAGE_SCANNING_CONFIGURATION
   docker_push_to_ecr $INPUT_TAGS $ACCOUNT_URL
+  execute_kubectl_command $INPUT_CLUSTER_NAME $INPUT_KUBECTL_COMMAND
 }
 
 function sanitize() {
@@ -155,5 +161,20 @@ function docker_push_to_ecr() {
   done
   echo "== FINISHED PUSH TO ECR"
 }
+
+function execute_kubectl_command() {
+  echo "== START KUBECTL COMMAND"
+  if [ "${1}" = true ]; then
+    aws eks update-kubeconfig --name "${1}"
+    if [ "${2}" = true ]; then
+      kubectl "${2}"
+    else
+      echo "== KUBECTL COMMAND IS EMPTY"
+    fi
+  fi
+  echo "== FINISHED KUBECTL COMMAND"
+}
+
+
 
 main
