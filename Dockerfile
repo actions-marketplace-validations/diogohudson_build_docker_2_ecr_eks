@@ -8,7 +8,8 @@ RUN apk update \
   && pip install -U awscli \
   && apk --purge -v del py-pip \
   && curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl \
-  && mv ./kubectl /usr/local/bin/kubectl
+  && mv ./kubectl /usr/local/bin/kubectl \
+  && chmod +x /usr/local/bin/kubectl
 
 ADD entrypoint.sh /entrypoint.sh
 
