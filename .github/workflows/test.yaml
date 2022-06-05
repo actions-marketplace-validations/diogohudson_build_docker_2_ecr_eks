@@ -16,7 +16,7 @@ jobs:
          secret_access_key: ${{ secrets.APP041_SECRET_ACCESS_KEY }}
          account_id:  ${{ secrets.APP041_ACCOUNT_ID }}
          create_repo: true
-         repo: azpartes-product-availability
+         repo: teste-diogo
          region: us-east-1
          tags: ${{ env.BRANCH }}
          cluster_name: k8-internal-testing
