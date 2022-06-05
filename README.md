@@ -1,11 +1,10 @@
-# AWS ECR 2 EKS Action
+# Build Docker Image, push it to ECR and run kubectl command against an EKS  Action
 
 This Action allows you to create a Docker image, push it into an ECR repository and execute `kubectl` commands against a EKS cluster.
 
 This action, wouldn't exist without the excellent work made by the community in the [aws-ecr-action ](https://github.com/kciter/aws-ecr-action) and [eks-kubectl-action](https://github.com/ianbelcher/eks-kubectl-action) repos.
 
 ## Parameters
-
 
 
 | Parameter | Type | Default | Description |
@@ -26,8 +25,8 @@ This action, wouldn't exist without the excellent work made by the community in 
 | `path` | `string` | `.` | Path to Dockerfile, defaults to the working directory |
 | `prebuild_script` | `string` | | Relative path from top-level to script to run before Docker build |
 | `registry_ids` | `string` | | A comma-delimited list of AWS account IDs that are associated with the ECR registries. If you do not specify a registry, the default ECR registry is assumed |
-| `cluster_name` | `string` | | The name of the cluster (For now, it must reside on the same account as the ECR) |
-| `kubectl_command` | `string` | | The command to be executed against the specified cluster, example: `deploy -f my_app.yaml` |
+| `cluster_name` | `string` | | The name of the cluster (For now, it must reside on the same account as the ECR) [optional] |
+| `kubectl_command` | `string` | | The command to be executed against the specified cluster, example: `deploy -f my_app.yaml` [optional] |
 
 
 ## Usage
