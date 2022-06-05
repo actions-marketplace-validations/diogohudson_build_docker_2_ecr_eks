@@ -19,5 +19,5 @@ jobs:
          repo: azpartes-product-availability
          region: us-east-1
          tags: ${{ env.BRANCH }}
-         input_cluster_name: k8-internal-testing
+         cluster_name: k8-internal-testing
          kubectl_command: get pods

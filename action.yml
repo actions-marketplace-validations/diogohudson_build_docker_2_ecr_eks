@@ -64,7 +64,6 @@ inputs:
   kubectl_command:
     description: The kubectl command to be executed against the specified EKS cluster (ex. apply -f <file>)
     required: false
-
 outputs:
   image:
     description: 'The created image name'
