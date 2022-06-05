@@ -1,4 +1,4 @@
-# Build Docker Image, push it to ECR and run kubectl command against an EKS  Action
+# Build Docker Image, push it to ECR and run kubectl command against an EKS
 
 This Action allows you to create a Docker image, push it into an ECR repository and execute `kubectl` commands against a EKS cluster.
 
