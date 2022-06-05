@@ -164,19 +164,17 @@ function docker_push_to_ecr() {
 
 function execute_kubectl_command() {
   echo "== START KUBECTL COMMAND"
-  if [ $INPUT_CLUSTER_NAME = true ]; then
+  echo $INPUT_CLUSTER_NAME
+  echo $INPUT_KUBECTL_COMMAND
+  if [ "$INPUT_CLUSTER_NAME" = true ]; then
     echo "=== CONFIG KUBE TO CLUSTER"
     aws eks update-kubeconfig --name $INPUT_CLUSTER_NAME
-    if [ $INPUT_KUBECTL_COMMAND = true ]; then
+    if [ "$INPUT_KUBECTL_COMMAND" = true ]; then
       echo "==== EXECUTE COMMAND"
       kubectl $INPUT_KUBECTL_COMMAND
     else
       echo "== COMMAND IS EMPTY"
     fi
-  else
-    echo "== CLUSTER NAME IS EMPTY"
-  fi
-
   fi
   echo "== FINISHED KUBECTL COMMAND"
 }
