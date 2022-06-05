@@ -1,5 +1,5 @@
-name: AWS Image, Push to ECR, run kubectl command against a EKS
-author: Lee Sun-Hyoup <kciter@naver.com>, Pablo Castillo <pablo@castillo.is>
+name: Build Docker Image, push it to AWS ECR and run kubectl command against an AWS EKS
+author: Diogo Hudson <https://github.com/diogohudson>
 branding:
   icon: upload-cloud
   color: orange
