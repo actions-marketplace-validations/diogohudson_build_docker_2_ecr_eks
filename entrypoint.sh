@@ -32,7 +32,7 @@ function main() {
   set_ecr_repo_policy $INPUT_SET_REPO_POLICY
   put_image_scanning_configuration $INPUT_IMAGE_SCANNING_CONFIGURATION
   docker_push_to_ecr $INPUT_TAGS $ACCOUNT_URL
-  execute_kubectl_command $INPUT_CLUSTER_NAME $INPUT_KUBECTL_COMMAND
+  execute_kubectl_command
 }
 
 function sanitize() {
@@ -164,12 +164,14 @@ function docker_push_to_ecr() {
 
 function execute_kubectl_command() {
   echo "== START KUBECTL COMMAND"
-  if [ "${1}" = true ]; then
-    aws eks update-kubeconfig --name "${1}"
-    if [ "${2}" = true ]; then
-      kubectl "${2}"
+  if [ "$INPUT_CLUSTER_NAME" = true ]; then
+    echo "=== CONFIG KUBE TO CLUSTER"
+    aws eks update-kubeconfig --name $INPUT_CLUSTER_NAME
+    if [ "$INPUT_KUBECTL_COMMAND" = true ]; then
+      echo "==== EXECUTE COMMAND"
+      kubectl $INPUT_KUBECTL_COMMAND
     else
-      echo "== KUBECTL COMMAND IS EMPTY"
+      echo "== COMMAND IS EMPTY"
     fi
   fi
   echo "== FINISHED KUBECTL COMMAND"
