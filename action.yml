@@ -58,7 +58,7 @@ inputs:
   prebuild_script:
     description: Relative path from top-level to script to run before Docker build
     required: false
-  input_cluster_name:
+  cluster_name:
     description: Name of the EKS cluster to use
     required: false
   kubectl_command:
