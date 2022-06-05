@@ -163,8 +163,6 @@ function docker_push_to_ecr() {
 
 function execute_kubectl_command() {
   echo "== START KUBECTL COMMAND"
-  echo $INPUT_CLUSTER_NAME
-  echo $INPUT_KUBECTL_COMMAND
   if [ "$INPUT_CLUSTER_NAME" != "" ]; then
     echo "=== CONFIG KUBE TO CLUSTER"
     aws eks update-kubeconfig --name $INPUT_CLUSTER_NAME --region $AWS_DEFAULT_REGION
@@ -177,7 +175,5 @@ function execute_kubectl_command() {
   fi
   echo "== FINISHED KUBECTL COMMAND"
 }
-
-
 
 main
