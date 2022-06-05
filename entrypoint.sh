@@ -12,7 +12,6 @@ INPUT_CLUSTER_NAME="${INPUT_CLUSTER_NAME:-false}"
 INPUT_KUBECTL_COMMAND="${INPUT_KUBECTL_COMMAND:-false}"
 
 function main() {
-  env
   sanitize "${INPUT_ACCESS_KEY_ID}" "access_key_id"
   sanitize "${INPUT_SECRET_ACCESS_KEY}" "secret_access_key"
   sanitize "${INPUT_REGION}" "region"
@@ -166,10 +165,10 @@ function execute_kubectl_command() {
   echo "== START KUBECTL COMMAND"
   echo $INPUT_CLUSTER_NAME
   echo $INPUT_KUBECTL_COMMAND
-  if [ "$INPUT_CLUSTER_NAME" = true ]; then
+  if [ "$INPUT_CLUSTER_NAME" != "" ]; then
     echo "=== CONFIG KUBE TO CLUSTER"
     aws eks update-kubeconfig --name $INPUT_CLUSTER_NAME
-    if [ "$INPUT_KUBECTL_COMMAND" = true ]; then
+    if [ "$INPUT_KUBECTL_COMMAND" != "" ]; then
       echo "==== EXECUTE COMMAND"
       kubectl $INPUT_KUBECTL_COMMAND
     else
